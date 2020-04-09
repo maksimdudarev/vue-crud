@@ -1,81 +1,82 @@
 <template>
   <div id="app" class="small-container">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Travellers</h1>
 
-    <h1>Employees</h1>
-
-    <employee-table
-      :employees="employees"
-      @delete:employee="deleteEmployee"
-      @edit:employee="editEmployee"
+    <traveller-index
+      :items="travellers"
+      @delete:item="deleteTraveller"
+      @edit:item="editTraveller"
     />
-    <employee-form @add:employee="addEmployee" />
+    <traveller-add @add:item="addTraveller" />
+
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import EmployeeTable from '@/components/EmployeeTable.vue'
-import EmployeeForm from '@/components/EmployeeForm.vue'
+import TravellerIndex from '@/components/traveller/Index.vue'
+import TravellerAdd from '@/components/traveller/Add.vue'
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    EmployeeTable,
-    EmployeeForm,
+    TravellerIndex,
+    TravellerAdd,
   },
   data() {
     return {
-      employees: [],
+      travellers: [],
+      request: 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers',
     }
   },
   mounted() {
-    this.getEmployees()
+    this.getTravellers()
   },
   methods: {
-    async getEmployees() {
+    async getTravellers() {
       try {
-        const response = await fetch('http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers')
+        const response = await fetch(this.request)
         const data = await response.json()
-        this.employees = data
+        this.travellers = data
       } catch (error) {
         console.error(error)
       }
     },
-    async addEmployee(employee) {
+    async addTraveller(item) {
       try {
-        const response = await fetch('http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers', {
+        const response = await fetch(this.request, {
           method: 'POST',
-          body: JSON.stringify(employee),
+          body: JSON.stringify(item),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
         const data = await response.json()
-        this.employees = [...this.employees, data]
+        this.travellers = [...this.travellers, data]
       } catch (error) {
         console.error(error)
       }
-    },    
-    async deleteEmployee(id) {
+    },
+    async deleteTraveller(id) {
       try {
-        await fetch(`http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers/${id}`, {
+        await fetch(`${this.request}/${id}`, {
           method: "DELETE"
         });
-        this.employees = this.employees.filter(employee => employee.id !== id);
+        this.travellers = this.travellers.filter(i => i.id !== id);
       } catch (error) {
         console.error(error);
       }
-    },    
-    async editEmployee(id, updatedEmployee) {
+    },
+    async editTraveller(id, item) {
       try {
-        const response = await fetch(`http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers/${id}`, {
+        const response = await fetch(`${this.request}/${id}`, {
           method: 'PUT',
-          body: JSON.stringify(updatedEmployee),
+          body: JSON.stringify(item),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
         const data = await response.json()
-        this.employees = this.employees.map(employee => (employee.id === id ? data : employee))
+        this.travellers = this.travellers.map(i => (i.id === id ? data : i))
       } catch (error) {
         console.error(error)
       }

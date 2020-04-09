@@ -1,42 +1,42 @@
 <template>
-  <div id="employee-form">
+  <div id="form">
     <form @submit.prevent="handleSubmit">
-      <label>Employee name</label>
+      <label>Name</label>
       <input
         ref="first"
         type="text"
         :class="{ 'has-error': submitting && invalidName }"
-        v-model="employee.name"
+        v-model="item.name"
         @focus="clearStatus"
         @keypress="clearStatus"
       />      
-      <label>Employee Email</label>
+      <label>Email</label>
       <input
         type="text"
         :class="{ 'has-error': submitting && invalidEmail }"
-        v-model="employee.email"
+        v-model="item.email"
         @focus="clearStatus"
       />      
       <p v-if="error && submitting" class="error-message">
         ❗Please fill out all required fields
       </p>
       <p v-if="success" class="success-message">
-        ✅ Employee successfully added
+        ✅ Successfully added
       </p>
-      <button>Add Employee</button>
+      <button>Add</button>
     </form>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'employee-form',
+    name: 'form',
     data() {
       return {
         submitting: false,
         error: false,
         success: false,
-        employee: {
+        item: {
           name: '',
           email: '',
         },
@@ -52,10 +52,10 @@
           return
         }
 
-        this.$emit('add:employee', this.employee)
+        this.$emit('add:item', this.item)
         this.$refs.first.focus()
 
-        this.employee = {
+        this.item = {
         name: '',
         email: '',
         }
@@ -70,11 +70,11 @@
     },
     computed: {
       invalidName() {
-        return this.employee.name === ''
+        return this.item.name === ''
       },
 
       invalidEmail() {
-        return this.employee.email === ''
+        return this.item.email === ''
       },
     },    
   }
