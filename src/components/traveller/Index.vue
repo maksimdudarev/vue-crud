@@ -1,5 +1,5 @@
 <template>
-  <div id="table">
+  <div id="index-table">
     <p v-if="items.length < 1" class="empty-table">
       No items
     </p>
@@ -39,7 +39,7 @@
 
 <script>
   export default {
-    name: 'table',
+    name: 'index-table',
     props: {
     items: Array,
     },

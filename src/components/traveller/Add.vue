@@ -1,5 +1,5 @@
 <template>
-  <div id="form">
+  <div id="add-form">
     <form @submit.prevent="handleSubmit">
       <label>Name</label>
       <input
@@ -30,7 +30,7 @@
 
 <script>
   export default {
-    name: 'form',
+    name: 'add-form',
     data() {
       return {
         submitting: false,
