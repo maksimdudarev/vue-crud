@@ -6,94 +6,20 @@
       <!-- use router-link component for navigation. -->
       <!-- specify the link by passing the `to` prop. -->
       <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-      <router-link to="/foo">Go to Foo</router-link> :: 
-      <router-link to="/bar">Go to Bar</router-link>
+      <router-link to="/foo">Foo</router-link> :: 
+      <router-link to="/helloworld">HelloWorld</router-link> ::
+      <router-link to="/travellers">Travellers</router-link>
     </p>
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
     <router-view></router-view>
-
-    <h1>Travellers</h1>
-
-    <traveller-index
-      :items="travellers"
-      @delete:item="deleteTraveller"
-      @edit:item="editTraveller"
-    />
-    <traveller-add @add:item="addTraveller" />
-
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-import TravellerIndex from '@/components/traveller/Index.vue'
-import TravellerAdd from '@/components/traveller/Add.vue'
 
+<script>
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-    TravellerIndex,
-    TravellerAdd,
-  },
-  data() {
-    return {
-      travellers: [],
-      request: 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers',
-    }
-  },
-  mounted() {
-    this.getTravellers()
-  },
-  methods: {
-    async getTravellers() {
-      try {
-        const response = await fetch(this.request)
-        const data = await response.json()
-        this.travellers = data
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async addTraveller(item) {
-      try {
-        const response = await fetch(this.request, {
-          method: 'POST',
-          body: JSON.stringify(item),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.travellers = [...this.travellers, data]
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async deleteTraveller(id) {
-      try {
-        await fetch(`${this.request}/${id}`, {
-          method: "DELETE"
-        });
-        this.travellers = this.travellers.filter(i => i.id !== id);
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    async editTraveller(id, item) {
-      try {
-        const response = await fetch(`${this.request}/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify(item),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.travellers = this.travellers.map(i => (i.id === id ? data : i))
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  }
 }
 </script>
 
