@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import Foo from './Foo.vue'
-import Travellers from './views/Travellers.vue'
 
 import App from './App.vue'
 
@@ -15,11 +13,22 @@ const routes = [
     name: 'HelloWorld',
     component: HelloWorld
   },
-  { path: '/foo', component: Foo },
   {
     path: '/travellers',
-    component: Travellers
-  }
+    component:  () => import(/* */ './views/traveller/index.vue')
+  },
+  {
+    path: '/travellers/add',
+    component: () => import(/* */ './views/traveller/add.vue')
+  },
+  {
+    path: '/travellers/edit/:id',
+    component: () => import(/* */ './views/traveller/edit.vue')
+  },
+  {
+    path: '/travellers/delete/:id',
+    component: () => import(/* */ './views/traveller/delete.vue')
+  },
 ]
 
 const router = new VueRouter({

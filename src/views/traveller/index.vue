@@ -6,19 +6,16 @@
       @delete:item="deleteTraveller"
       @edit:item="editTraveller"
     />
-    <TravellerAdd @add:item="addTraveller" />
   </div>
 </template>
 
 <script>
-import TravellerIndex from '@/components/traveller/Index.vue'
-import TravellerAdd from '@/components/traveller/Add.vue'
+import TravellerIndex from '@/components/traveller/list.vue'
 
 export default {
   name: 'App',
   components: {
     TravellerIndex,
-    TravellerAdd,
   },
   data() {
     return {
@@ -35,19 +32,6 @@ export default {
         const response = await fetch(this.request)
         const data = await response.json()
         this.travellers = data
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async addTraveller(item) {
-      try {
-        const response = await fetch(this.request, {
-          method: 'POST',
-          body: JSON.stringify(item),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.travellers = [...this.travellers, data]
       } catch (error) {
         console.error(error)
       }
