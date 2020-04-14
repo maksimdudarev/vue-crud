@@ -34,6 +34,7 @@
           <td>
             <router-link :to="{path: `/travellers/edit/${item.id}`}" tag="button">Edit</router-link>
             <router-link :to="{path: `/travellers/delete/${item.id}`}" tag="button">Delete</router-link>
+            <button @click="$emit('get:item', item.id)">Details</button>
           </td>
         </tr>
       </tbody>
@@ -46,6 +47,7 @@
     name: 'index-table',
     props: {
     items: Array,
+    item: {},
     },
     data() {
       return {
@@ -59,7 +61,7 @@
       },
       cancelEdit(item) {
         Object.assign(item, this.cachedItem)
-        this.editing = null;
+        this.editing = null
       },
       editItem(item) {
         if (item.name === '' || item.email === '') return

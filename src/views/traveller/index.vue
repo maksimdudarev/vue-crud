@@ -1,52 +1,65 @@
 <template>
   <div id="app" class="small-container">
     <h1>Travellers</h1>
-    <TravellerIndex
-      :items="travellers"
-      @delete:item="deleteTraveller"
-      @edit:item="editTraveller"
+    <router-link to="/travellers/add" tag="button">Add</router-link>
+    <Index
+      :items="items"
+      @delete:item="deleteItem"
+      @edit:item="editItem"
+      @get:item="getItem"
     />
   </div>
 </template>
 
 <script>
-import TravellerIndex from '@/components/traveller/list.vue'
+import Index from '@/components/traveller/list.vue'
 
 export default {
   name: 'App',
   components: {
-    TravellerIndex,
+    Index,
   },
   data() {
     return {
-      travellers: [],
+      items: [],
+      item: {},
       request: 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers',
     }
   },
   mounted() {
-    this.getTravellers()
+    this.getItems()
   },
   methods: {
-    async getTravellers() {
+    async getItems() {
       try {
         const response = await fetch(this.request)
         const data = await response.json()
-        this.travellers = data
+        this.items = data
       } catch (error) {
         console.error(error)
       }
     },
-    async deleteTraveller(id) {
+    async getItem(id) {
+      try {
+        const response = await fetch(`${this.request}/${id}`)
+        const data = await response.json()
+        console.log(data)
+        this.item = data
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async deleteItem(id) {
       try {
         await fetch(`${this.request}/${id}`, {
           method: "DELETE"
-        });
-        this.travellers = this.travellers.filter(i => i.id !== id);
+        })
+        this.items = this.items.filter(i => i.id !== id)
       } catch (error) {
-        console.error(error);
+        console.error(error)
       }
     },
-    async editTraveller(id, item) {
+    async editItem(id, item) {
       try {
         const response = await fetch(`${this.request}/${id}`, {
           method: 'PUT',
@@ -54,7 +67,7 @@ export default {
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
         const data = await response.json()
-        this.travellers = this.travellers.map(i => (i.id === id ? data : i))
+        this.items = this.items.map(i => (i.id === id ? data : i))
       } catch (error) {
         console.error(error)
       }

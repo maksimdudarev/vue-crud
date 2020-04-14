@@ -1,26 +1,26 @@
 <template>
   <div id="app">
     <h1>Add</h1>
-    <TravellerAdd @add:item="addTraveller" />
+    <Add @add:item="addItem" />
   </div>
 </template>
 
 <script>
-import TravellerAdd from '@/components/traveller/AddForm.vue'
+import Add from '@/components/traveller/AddForm.vue'
 
 export default {
   name: 'App',
   components: {
-    TravellerAdd,
+    Add,
   },
   data() {
     return {
-      travellers: [],
+      items: [],
       request: 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers',
     }
   },
   methods: {
-    async addTraveller(item) {
+    async addItem(item) {
       try {
         const response = await fetch(this.request, {
           method: 'POST',
@@ -28,7 +28,7 @@ export default {
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
         const data = await response.json()
-        this.travellers = [...this.travellers, data]
+        this.items = [...this.items, data]
       } catch (error) {
         console.error(error)
       }
