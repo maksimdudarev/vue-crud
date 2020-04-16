@@ -29,7 +29,6 @@
           </td>
           <td v-else>
             <button @click="editMode(item)">Edit</button>
-            <button @click="$emit('delete:item', item.id)">Delete</button>
           </td>
           <td>
             <router-link :to="{path: `/travellers/edit/${item.id}`}" tag="button">Edit</router-link>
