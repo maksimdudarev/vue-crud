@@ -3,13 +3,14 @@
     <h1>Add</h1>
     <Item
       :itemExternal="item"
-      @action:item="addItem"
+      @action:item="addHandler"
     />
   </div>
 </template>
 
 <script>
 import Item from '@/components/traveller/item.vue'
+import { request, addItem } from "@/const";
 
 export default {
   name: 'App',
@@ -22,20 +23,11 @@ export default {
         name: '',
         email: '',
       },
-      request: 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers',
     }
   },
   methods: {
-    async addItem(item) {
-      try {
-        await fetch(this.request, {
-          method: 'POST',
-          body: JSON.stringify(item),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-      } catch (error) {
-        console.error(error)
-      }
+    async addHandler(item) {
+      await addItem(request, item)
     },
   }
 }
