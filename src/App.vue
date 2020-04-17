@@ -1,86 +1,23 @@
 <template>
   <div id="app" class="small-container">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-
-    <h1>Employees</h1>
-
-    <employee-table
-      :employees="employees"
-      @delete:employee="deleteEmployee"
-      @edit:employee="editEmployee"
-    />
-    <employee-form @add:employee="addEmployee" />
+    <p>
+      <!-- use router-link component for navigation. -->
+      <!-- specify the link by passing the `to` prop. -->
+      <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
+      <router-link to="/helloworld" tag="button">HelloWorld</router-link> :: 
+      <router-link to="/travellers" tag="button">Travellers</router-link>
+    </p>
+    <!-- route outlet -->
+    <!-- component matched by the route will render here -->
+    <router-view></router-view>
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-import EmployeeTable from '@/components/EmployeeTable.vue'
-import EmployeeForm from '@/components/EmployeeForm.vue'
 
+<script>
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-    EmployeeTable,
-    EmployeeForm,
-  },
-  data() {
-    return {
-      employees: [],
-    }
-  },
-  mounted() {
-    this.getEmployees()
-  },
-  methods: {
-    async getEmployees() {
-      try {
-        const response = await fetch('http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers')
-        const data = await response.json()
-        this.employees = data
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async addEmployee(employee) {
-      try {
-        const response = await fetch('http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers', {
-          method: 'POST',
-          body: JSON.stringify(employee),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.employees = [...this.employees, data]
-      } catch (error) {
-        console.error(error)
-      }
-    },    
-    async deleteEmployee(id) {
-      try {
-        await fetch(`http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers/${id}`, {
-          method: "DELETE"
-        });
-        this.employees = this.employees.filter(employee => employee.id !== id);
-      } catch (error) {
-        console.error(error);
-      }
-    },    
-    async editEmployee(id, updatedEmployee) {
-      try {
-        const response = await fetch(`http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify(updatedEmployee),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.employees = this.employees.map(employee => (employee.id === id ? data : employee))
-      } catch (error) {
-        console.error(error)
-      }
-    },
-  }
 }
 </script>
 
