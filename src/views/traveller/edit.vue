@@ -36,15 +36,13 @@ export default {
         console.error(error)
       }
     },
-    async editItem(item, id) {
+    async editItem(item) {
       try {
-        const response = await fetch(`${this.request}/${id}`, {
+        await fetch(`${this.request}/${item.id}`, {
           method: 'PUT',
           body: JSON.stringify(item),
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
-        const data = await response.json()
-        this.items = this.items.map(i => (i.id === id ? data : i))
       } catch (error) {
         console.error(error)
       }

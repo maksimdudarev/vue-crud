@@ -4,7 +4,6 @@
     <router-link to="/travellers/add" tag="button">Add</router-link>
     <List
       :items="items"
-      @edit:item="editItem"
     />
   </div>
 </template>
@@ -32,19 +31,6 @@ export default {
         const response = await fetch(this.request)
         const data = await response.json()
         this.items = data
-      } catch (error) {
-        console.error(error)
-      }
-    },
-    async editItem(id, item) {
-      try {
-        const response = await fetch(`${this.request}/${id}`, {
-          method: 'PUT',
-          body: JSON.stringify(item),
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        const data = await response.json()
-        this.items = this.items.map(i => (i.id === id ? data : i))
       } catch (error) {
         console.error(error)
       }

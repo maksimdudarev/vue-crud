@@ -1,5 +1,5 @@
 <template>
-  <div id="item-form">
+  <div id="item">
     <hr />
     <form @submit.prevent="handleSubmit">
       <div>
@@ -40,7 +40,7 @@
 
 <script>
   export default {
-    name: 'item-form',
+    name: 'item',
     props: {
       itemExternal: {},
       disabled: {},
@@ -68,7 +68,7 @@
           return
         }
 
-        this.$emit('action:item', this.item, this.item.id)
+        this.$emit('action:item', this.item)
         this.$refs.first.focus()
 
         this.item = {
