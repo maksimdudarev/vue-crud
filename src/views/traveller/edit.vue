@@ -30,8 +30,8 @@ export default {
       const data = await getItem(request, id)
       this.item = data
     },
-    async editHandler(item) {
-      await editItem(request, item)
+    editHandler(item) {
+      editItem(request, item)
     },
   },
 }

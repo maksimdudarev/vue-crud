@@ -31,8 +31,8 @@ export default {
       const data = await getItem(request, id)
       this.item = data
     },
-    async deleteHandler(item) {
-      await deleteItem(request, item)
+    deleteHandler(item) {
+      deleteItem(request, item)
     },
   },
 }

@@ -26,8 +26,8 @@ export default {
     }
   },
   methods: {
-    async addHandler(item) {
-      await addItem(request, item)
+    addHandler(item) {
+      addItem(request, item)
     },
   }
 }
