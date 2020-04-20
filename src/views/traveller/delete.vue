@@ -33,6 +33,7 @@ export default {
     },
     deleteHandler(item) {
       deleteItem(request, item)
+      this.$router.push('/travellers')
     },
   },
 }

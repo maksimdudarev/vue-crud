@@ -32,6 +32,7 @@ export default {
     },
     editHandler(item) {
       editItem(request, item)
+      this.$router.push('/travellers')
     },
   },
 }

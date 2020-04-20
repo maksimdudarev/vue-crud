@@ -1,4 +1,4 @@
-* redirect to list
+* ~~redirect to list~~
 * nav panel
 * choose from list
 * ~~api link consolidate~~

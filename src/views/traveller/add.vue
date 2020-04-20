@@ -28,6 +28,7 @@ export default {
   methods: {
     addHandler(item) {
       addItem(request, item)
+      this.$router.push('/travellers')
     },
   }
 }

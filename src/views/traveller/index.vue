@@ -40,6 +40,9 @@ export default {
   mounted() {
     this.getItemsInner()
   },
+  beforeUpdate() {
+    this.getItemsInner()
+  },
   methods: {
     async getItemsInner() {
       this.item = item;
