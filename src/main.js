@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import UserEmailsSubscriptions from './components/UserEmailsSubscriptions.vue'
+import UserSettings from './components/UserSettings.vue'
+import UserProfile from './components/UserEmailsSubscriptions.vue'
+import UserProfilePreview from './components/UserEmailsSubscriptions.vue'
 
 import App from './App.vue'
 
@@ -29,7 +33,26 @@ const routes = [
     path: '/travellers/delete/:id',
     component: () => import(/* */ './views/traveller/delete.vue')
   },
+  {
+    path: '/settings',
+    // You could also have named views at tho top
+    component: UserSettings,
+    children: [
+      {
+        path: 'emails',
+        component: UserEmailsSubscriptions
+      },
+      {
+        path: 'profile',
+        components: {
+          default: UserProfile,
+          helper: UserProfilePreview
+        }
+      }
+    ]
+  },
 ]
+
 
 const router = new VueRouter({
   mode: 'history',
