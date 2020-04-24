@@ -31,8 +31,8 @@ export default {
       const data = await getItem(request, id)
       this.item = data
     },
-    deleteHandler(item) {
-      deleteItem(request, item)
+    async deleteHandler(item) {
+      await deleteItem(request, item)
       this.$router.push('/travellers')
     },
   },

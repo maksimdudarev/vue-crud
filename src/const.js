@@ -22,9 +22,9 @@ export async function getItem(request, id) {
   return data
 }
 
-export function addItem(request, item) {
+export async function addItem(request, item) {
   try {
-    fetch(request, {
+    await fetch(request, {
       method: 'POST',
       body: JSON.stringify(item),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -34,9 +34,9 @@ export function addItem(request, item) {
   }
 }
 
-export function editItem(request, item) {
+export async function editItem(request, item) {
   try {
-    fetch(`${request}/${item.id}`, {
+    await fetch(`${request}/${item.id}`, {
       method: 'PUT',
       body: JSON.stringify(item),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
@@ -46,9 +46,9 @@ export function editItem(request, item) {
   }
 }
 
-export function deleteItem(request, item) {
+export async function deleteItem(request, item) {
   try {
-    fetch(`${request}/${item.id}`, {
+    await fetch(`${request}/${item.id}`, {
       method: "DELETE"
     })
   } catch (error) {

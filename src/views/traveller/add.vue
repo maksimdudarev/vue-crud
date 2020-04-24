@@ -26,8 +26,8 @@ export default {
     }
   },
   methods: {
-    addHandler(item) {
-      addItem(request, item)
+    async addHandler(item) {
+      await addItem(request, item)
       this.$router.push('/travellers')
     },
   }

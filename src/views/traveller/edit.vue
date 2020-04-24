@@ -30,8 +30,8 @@ export default {
       const data = await getItem(request, id)
       this.item = data
     },
-    editHandler(item) {
-      editItem(request, item)
+    async editHandler(item) {
+      await editItem(request, item)
       this.$router.push('/travellers')
     },
   },
