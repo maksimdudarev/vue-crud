@@ -8,6 +8,7 @@
         <tr>
           <th>Name</th>
           <th>Email</th>
+          <th><router-link to="/travellers/add" tag="button">Add</router-link></th>
         </tr>
       </thead>
       <tbody>

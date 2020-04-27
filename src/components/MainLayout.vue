@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div class="us">
-      <h2>User Settings</h2>
-      <UserSettingsNav/>
+      <h2>Main Layout</h2>
+      <NavMenu/>
       <router-view class ="us__content"/>
       <router-view name="helper" class="us__content us__content--helper"/>
     </div>
@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import UserSettingsNav from '@/components/UserSettingsNav.vue'
+import NavMenu from '@/components/NavMenu.vue'
 
 export default {
   name: 'App',
   components: {
-    UserSettingsNav,
+    NavMenu,
   },
 }
 </script>
@@ -36,6 +36,8 @@ export default {
   }
   .us__content {
     grid-area: content;
+    height: 350px;
+    overflow: auto;
   }
   .us__content--helper {
     grid-area: helper;

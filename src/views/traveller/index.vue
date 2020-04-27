@@ -10,7 +10,6 @@
     <br>
     {{ item5.name }} -->
     <h1>Travellers</h1>
-    <router-link to="/travellers/add" tag="button">Add</router-link>
     <List
       :items="items"
     />

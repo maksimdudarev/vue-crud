@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
-import UserEmailsSubscriptions from './components/UserEmailsSubscriptions.vue'
-import UserSettings from './components/UserSettings.vue'
-import UserProfile from './components/UserProfile.vue'
-import UserProfilePreview from './components/UserProfilePreview.vue'
 
 import App from './App.vue'
 
@@ -13,40 +9,39 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/helloworld',
-    name: 'HelloWorld',
-    component: HelloWorld
-  },
-  {
-    path: '/travellers',
-    component:  () => import(/* */ './views/traveller/index.vue')
-  },
-  {
-    path: '/travellers/add',
-    component: () => import(/* */ './views/traveller/add.vue')
-  },
-  {
-    path: '/travellers/edit/:id',
-    component: () => import(/* */ './views/traveller/edit.vue')
-  },
-  {
-    path: '/travellers/delete/:id',
-    component: () => import(/* */ './views/traveller/delete.vue')
-  },
-  {
-    path: '/settings',
-    // You could also have named views at tho top
-    component: UserSettings,
+    path: '/',
+    component: () => import(/* */ './components/MainLayout.vue'),
     children: [
       {
+        path: 'helloworld',
+        name: 'HelloWorld',
+        component: HelloWorld
+      },
+      {
+        path: 'travellers',
+        component: () => import(/* */ './views/traveller/index.vue')
+      },
+      {
+        path: 'travellers/add',
+        component: () => import(/* */ './views/traveller/add.vue')
+      },
+      {
+        path: 'travellers/edit/:id',
+        component: () => import(/* */ './views/traveller/edit.vue')
+      },
+      {
+        path: 'travellers/delete/:id',
+        component: () => import(/* */ './views/traveller/delete.vue')
+      },
+      {
         path: 'emails',
-        component: UserEmailsSubscriptions
+        component: () => import(/* */ './views/user/EmailsSubscriptions.vue')
       },
       {
         path: 'profile',
         components: {
-          default: UserProfile,
-          helper: UserProfilePreview
+          default: () => import(/* */ './views/user/Profile.vue'),
+          helper: () => import(/* */ './views/user/ProfilePreview.vue')
         }
       }
     ]
