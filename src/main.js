@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import UserEmailsSubscriptions from './components/UserEmailsSubscriptions.vue'
 import UserSettings from './components/UserSettings.vue'
-import UserProfile from './components/UserEmailsSubscriptions.vue'
-import UserProfilePreview from './components/UserEmailsSubscriptions.vue'
+import UserProfile from './components/UserProfile.vue'
+import UserProfilePreview from './components/UserProfilePreview.vue'
 
 import App from './App.vue'
 

@@ -17,12 +17,27 @@ export default {
   components: {
     UserSettingsNav,
   },
-  data() {
-    return {
-      item: {},
-    }
-  },
-  methods: {
-  },
 }
 </script>
+
+<style scoped>
+  .us {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header header"
+      "nav content"
+      "nav helper"
+      ;
+  }
+  h2 {
+    grid-area: header;
+  }
+  .us__content {
+    grid-area: content;
+  }
+  .us__content--helper {
+    grid-area: helper;
+  }
+</style>

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <h3>Email Subscriptions</h3>
     <div class="us__nav">
       <router-link to="/settings/emails">emails</router-link>
       <br>
@@ -8,3 +7,12 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .us__nav {
+    grid-area: nav;
+    border: 5px dotted;
+    margin-right: .75rem;
+    padding: .3rem;
+  }
+</style>

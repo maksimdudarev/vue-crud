@@ -6,7 +6,8 @@
       <!-- specify the link by passing the `to` prop. -->
       <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
       <router-link to="/helloworld" tag="button">HelloWorld</router-link> :: 
-      <router-link to="/travellers" tag="button">Travellers</router-link>
+      <router-link to="/travellers" tag="button">Travellers</router-link> :: 
+      <router-link to="/settings" tag="button">Settings</router-link>
     </p>
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
