@@ -40,6 +40,18 @@ const routes = [
         component: () => import(/* */ './views/game/index.vue')
       },
       {
+        path: 'games/add',
+        component: () => import(/* */ './views/game/add.vue')
+      },
+      {
+        path: 'games/edit/:id',
+        component: () => import(/* */ './views/game/edit.vue')
+      },
+      {
+        path: 'games/delete/:id',
+        component: () => import(/* */ './views/game/delete.vue')
+      },
+      {
         path: 'emails',
         component: () => import(/* */ './views/user/EmailsSubscriptions.vue')
       },

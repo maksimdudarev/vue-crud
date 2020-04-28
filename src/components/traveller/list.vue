@@ -7,14 +7,12 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
           <th><router-link to="/travellers/add" tag="button">Add</router-link></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in items" :key="item.id">
           <td>{{ item.name }}</td>
-          <td>{{ item.email }}</td>
           <td>
             <router-link :to="{path: `/travellers/edit/${item.id}`}" tag="button">Edit</router-link>
             <router-link :to="{path: `/travellers/delete/${item.id}`}" tag="button">Delete</router-link>

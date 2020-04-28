@@ -1,5 +1,4 @@
-export const request = 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/travellers'
-export const requestCut = 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/'
+export const request = 'http://formulaone-dev.us-west-2.elasticbeanstalk.com:8000/api/'
   
 export async function getItems(request) {
   let data

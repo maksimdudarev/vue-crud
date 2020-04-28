@@ -4,13 +4,14 @@
     <List
       :items="items"
       :travellers="travellers"
+      :places="places"
     />
   </div>
 </template>
 
 <script>
 import List from '@/components/game/list.vue'
-import { request, requestCut, getItems } from "@/const"
+import { request, getItems } from "@/const"
 
 export default {
   name: 'App',
@@ -21,6 +22,7 @@ export default {
     return {
       items: [],
       travellers: [],
+      places: [],
     }
   },
   mounted() {
@@ -28,10 +30,12 @@ export default {
   },
   methods: {
     async getHandler() {
-      const data = await getItems(requestCut + 'games')
+      const data = await getItems(request + 'games')
       this.items = data
-      const travellers = await getItems(request)
+      const travellers = await getItems(request + 'travellers')
       this.travellers = travellers
+      const places = await getItems(request + 'places')
+      this.places = places
     },
   }
 }

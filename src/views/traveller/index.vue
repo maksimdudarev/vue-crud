@@ -58,7 +58,7 @@ export default {
       // this.item5 = Object.assign({}, item);
       // this.item5.name = request;
 
-      const data = await getItems(request)
+      const data = await getItems(request + 'travellers')
       this.items = data
       //console.log(this.items[this.items.length-1])
       //return data
@@ -68,9 +68,9 @@ export default {
 </script>
 
 <style scoped>
-  div {
+  /* div {
     border: 5px dotted;
     margin-right: .75rem;
     padding: .3rem;
-  }
+  } */
 </style>

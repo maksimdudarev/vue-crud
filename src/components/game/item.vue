@@ -3,19 +3,36 @@
     <hr />
     <form @submit.prevent="handleSubmit">
       <div>
-        <label>Name</label>
-        <!-- <input
+        <label>Date</label>
+        <input
           ref="first"
           type="text"
-          :class="{ 'has-error': submitting && invalidName }"
-          v-model="item.name"
+          :class="{ 'has-error': submitting && invalidDate }"
+          v-model="item.date"
           :disabled=disabled
           @focus="clearStatus"
           @keypress="clearStatus"
-        /> -->
-        <InputField
-          :item="item"
-        />
+        />      
+      </div>
+      <div>
+        <label>Traveller.Name</label>
+        <input
+          type="text"
+          :class="{ 'has-error': submitting && invalidTraveller }"
+          v-model="item.travellerId"
+          :disabled=disabled
+          @focus="clearStatus"
+        />      
+      </div>
+      <div>
+        <label>Points</label>
+        <input
+          type="text"
+          :class="{ 'has-error': submitting && invalidPoints }"
+          v-model="item.points"
+          :disabled=disabled
+          @focus="clearStatus"
+        />      
       </div>
       <p v-if="error && submitting" class="error-message">
         ❗Please fill out all required fields
@@ -25,20 +42,15 @@
       </p>
       <div>
         <button>Accept</button> ::
-        <router-link to="/travellers" tag="button">Cancel</router-link>
+        <router-link to="/games" tag="button">Cancel</router-link>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-  import InputField from '@/components/InputField.vue'
-
   export default {
     name: 'item',
-    components: {
-      InputField,
-    },
     props: {
       itemExternal: {},
       disabled: {},
@@ -61,7 +73,7 @@
         this.submitting = true
         this.clearStatus()
         
-        if (this.invalidName) {
+        if (this.invalidDate || this.invalidPoints) {
           this.error = true
           return
         }
@@ -70,7 +82,8 @@
         this.$refs.first.focus()
 
         this.item = {
-          name: '',
+          date: '',
+          points: '',
         }
         this.error = false
         this.success = true
@@ -82,8 +95,14 @@
       }
     },
     computed: {
-      invalidName() {
-        return this.item.name === ''
+      invalidDate() {
+        return this.item.date === ''
+      },
+      invalidPoints() {
+        return this.item.points === '' && ! this.disabled
+      },
+      invalidTraveller() {
+        return this.item.travellerId === ''
       },
     },    
   }

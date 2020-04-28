@@ -33,9 +33,9 @@ button {
   max-width: 1920px;
 }
 
-div {
+/* div {
   border: 5px solid #ff0000;
   margin-right: .75rem;
   padding: .3rem;
-}
+} */
 </style>

@@ -28,11 +28,11 @@ export default {
   },  
   methods: {
     async getHandler(id) {
-      const data = await getItem(request, id)
+      const data = await getItem(request + 'travellers', id)
       this.item = data
     },
     async deleteHandler(item) {
-      await deleteItem(request, item)
+      await deleteItem(request + 'travellers', item)
       this.$router.push('/travellers')
     },
   },
