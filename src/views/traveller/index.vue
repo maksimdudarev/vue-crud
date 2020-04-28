@@ -18,7 +18,7 @@
 
 <script>
 import List from '@/components/traveller/list.vue'
-import { request, getItems } from "@/const";
+import { request, getItems } from "@/const"
 
 export default {
   name: 'App',
@@ -37,11 +37,11 @@ export default {
     }
   },
   mounted() {
-    this.getItemsInner()
+    this.getHandler()
     console.log('test')
   },
   methods: {
-    async getItemsInner() {
+    async getHandler() {
       // this.item = item;
       // this.item.name = 'foo';
 
@@ -61,8 +61,16 @@ export default {
       const data = await getItems(request)
       this.items = data
       //console.log(this.items[this.items.length-1])
-      return data
+      //return data
     },
   }
 }
 </script>
+
+<style scoped>
+  div {
+    border: 5px dotted;
+    margin-right: .75rem;
+    padding: .3rem;
+  }
+</style>

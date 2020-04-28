@@ -10,7 +10,7 @@
 
 <script>
 import Item from '@/components/traveller/item.vue'
-import { request, getItem, editItem } from "@/const";
+import { request, getItem, editItem } from "@/const"
 
 export default {
   name: 'App',

@@ -5,6 +5,8 @@
       <hr>
       <router-link to="/travellers" tag="button">Travellers</router-link>
       <hr>
+      <router-link to="/games" tag="button">Games</router-link>
+      <hr>
       <router-link to="/emails" tag="button">Emails</router-link>
       <hr>
       <router-link to="/profile" tag="button">Profile</router-link>

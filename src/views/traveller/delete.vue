@@ -11,7 +11,7 @@
 
 <script>
 import Item from '@/components/traveller/item.vue'
-import { request, getItem, deleteItem } from "@/const";
+import { request, getItem, deleteItem } from "@/const"
 
 export default {
   name: 'App',

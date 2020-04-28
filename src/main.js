@@ -19,6 +19,7 @@ const routes = [
       },
       {
         path: 'travellers',
+        name: 'Travellers',
         component: () => import(/* */ './views/traveller/index.vue')
       },
       {
@@ -32,6 +33,11 @@ const routes = [
       {
         path: 'travellers/delete/:id',
         component: () => import(/* */ './views/traveller/delete.vue')
+      },
+      {
+        path: 'games',
+        name: 'Games',
+        component: () => import(/* */ './views/game/index.vue')
       },
       {
         path: 'emails',
