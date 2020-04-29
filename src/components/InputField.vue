@@ -1,9 +1,10 @@
 <template>
   <div id="field">
-    <label>Name</label>
+    <label for="input" class="capitalize">{{ property }}</label>
     <input
       type="text"
-      v-model="item.name"
+      id="input"
+      v-model="item[property]"
     />
   </div>
 </template>
@@ -13,6 +14,13 @@
     name: 'field',
     props: {
       item: {},
+      property: {},
     },
   }
 </script>
+
+<style scoped>
+  .capitalize {
+    text-transform:capitalize;
+  }
+</style>

@@ -3,8 +3,8 @@
     <hr />
     <form @submit.prevent="handleSubmit">
       <div>
-        <label>Name</label>
-        <!-- <input
+        <!-- <label>Name</label>
+        <input
           ref="first"
           type="text"
           :class="{ 'has-error': submitting && invalidName }"
@@ -15,6 +15,7 @@
         /> -->
         <InputField
           :item="item"
+          property="name"
         />
       </div>
       <p v-if="error && submitting" class="error-message">
