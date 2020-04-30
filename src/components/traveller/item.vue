@@ -20,8 +20,7 @@
           property="name"
           :hasError=hasError
           :disabled=disabled
-          @focus="clearStatus"
-          @keypress="clearStatus"
+          @action:clear="clearStatus"
         />
       </div>
       <p v-if="error && submitting" class="error-message">

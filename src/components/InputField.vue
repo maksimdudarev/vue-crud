@@ -7,6 +7,8 @@
       id="input"
       v-model=item[property]
       :disabled=disabled
+      @focus="clearStatus"
+      @keypress="clearStatus"
     />
   </div>
 </template>
@@ -19,6 +21,11 @@
       property: {},
       disabled: {},
       hasError: {},
+    },
+    methods: {
+      clearStatus() {
+        this.$emit('action:clear')
+      }
     },
   }
 </script>
