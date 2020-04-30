@@ -3,8 +3,10 @@
     <label for="input" class="capitalize">{{ property }}</label>
     <input
       type="text"
+      :class="{ 'has-error': hasError }"
       id="input"
-      v-model="item[property]"
+      v-model=item[property]
+      :disabled=disabled
     />
   </div>
 </template>
@@ -15,6 +17,8 @@
     props: {
       item: {},
       property: {},
+      disabled: {},
+      hasError: {},
     },
   }
 </script>

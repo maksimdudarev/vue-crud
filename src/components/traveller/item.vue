@@ -3,8 +3,9 @@
     <hr />
     <form @submit.prevent="handleSubmit">
       <div>
-        <!-- <label>Name</label>
+        <!-- <label for="name">Name</label>
         <input
+          id="name"
           ref="first"
           type="text"
           :class="{ 'has-error': submitting && invalidName }"
@@ -14,8 +15,13 @@
           @keypress="clearStatus"
         /> -->
         <InputField
-          :item="item"
+          ref="first"
+          :item=item
           property="name"
+          :hasError=hasError
+          :disabled=disabled
+          @focus="clearStatus"
+          @keypress="clearStatus"
         />
       </div>
       <p v-if="error && submitting" class="error-message">
@@ -73,18 +79,21 @@
         this.item = {
           name: '',
         }
+        this.submitting = false        
         this.error = false
         this.success = true
-        this.submitting = false        
       },
       clearStatus() {
-        this.success = false
         this.error = false
+        this.success = false
       }
     },
     computed: {
       invalidName() {
         return this.item.name === ''
+      },
+      hasError() {
+        return this.submitting && this.invalidName
       },
     },    
   }
