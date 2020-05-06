@@ -6,7 +6,7 @@
         <label>Date</label>
         <input
           ref="first"
-          type="text"
+          type="datetime"
           :class="{ 'has-error': submitting && invalidDate }"
           v-model="item.date"
           :disabled=disabled
@@ -27,9 +27,19 @@
       <div>
         <label>Points</label>
         <input
-          type="text"
+          type="number"
           :class="{ 'has-error': submitting && invalidPoints }"
           v-model="item.points"
+          :disabled=disabled
+          @focus="clearStatus"
+        />      
+      </div>
+      <div>
+        <label>Promotion</label>
+        <input
+          type="checkbox"
+          :class="{ 'has-error': submitting && invalidPromotion }"
+          v-model="item.promotion"
           :disabled=disabled
           @focus="clearStatus"
         />      
@@ -73,7 +83,7 @@
         this.submitting = true
         this.clearStatus()
         
-        if (this.invalidDate || this.invalidPoints) {
+        if (this.invalidDate || this.invalidPoints || this.invalidPromotion) {
           this.error = true
           return
         }
@@ -99,7 +109,10 @@
         return this.item.date === ''
       },
       invalidPoints() {
-        return this.item.points === '' && ! this.disabled
+        return this.item.points === ''
+      },
+      invalidPromotion() {
+        return this.item.promotion === ''
       },
       invalidTraveller() {
         return this.item.travellerId === ''
