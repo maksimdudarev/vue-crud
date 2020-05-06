@@ -15,10 +15,11 @@
           @keypress="clearStatus"
         /> -->
         <InputField
-          ref="first"
-          :item=item
           property="name"
+          ref="first"
+          type="text"
           :hasError=hasError
+          :item=item
           :disabled=disabled
           @action:clear="clearStatus"
         />

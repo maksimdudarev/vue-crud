@@ -35,14 +35,14 @@
         />      
       </div>
       <div>
-        <label>Promotion</label>
-        <input
+        <InputField
+          property="promotion"
           type="checkbox"
-          :class="{ 'has-error': submitting && invalidPromotion }"
-          v-model="item.promotion"
+          :hasError=hasError
+          :item=item
           :disabled=disabled
-          @focus="clearStatus"
-        />      
+          @action:clear="clearStatus"
+        />
       </div>
       <p v-if="error && submitting" class="error-message">
         ❗Please fill out all required fields
@@ -59,8 +59,13 @@
 </template>
 
 <script>
+  import InputField from '@/components/InputField.vue'
+
   export default {
     name: 'item',
+    components: {
+      InputField,
+    },
     props: {
       itemExternal: {},
       disabled: {},

@@ -2,7 +2,7 @@
   <div id="field">
     <label for="input" class="capitalize">{{ property }}</label>
     <input
-      type="text"
+      :type=type
       :class="{ 'has-error': hasError }"
       id="input"
       v-model=item[property]
@@ -17,10 +17,11 @@
   export default {
     name: 'field',
     props: {
+      type: {},
+      hasError: {},
       item: {},
       property: {},
       disabled: {},
-      hasError: {},
     },
     methods: {
       clearStatus() {
