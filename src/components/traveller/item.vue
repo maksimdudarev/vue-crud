@@ -77,9 +77,6 @@
         this.$emit('action:item', this.item)
         this.$refs.first.focus()
 
-        this.item = {
-          name: '',
-        }
         this.submitting = false        
         this.error = false
         this.success = true

@@ -96,10 +96,6 @@
         this.$emit('action:item', this.item)
         this.$refs.first.focus()
 
-        this.item = {
-          date: '',
-          points: '',
-        }
         this.error = false
         this.success = true
         this.submitting = false        
