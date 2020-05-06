@@ -22,6 +22,7 @@
           :item=item
           :disabled=disabled
           @action:clear="clearStatus"
+          required="required"
         />
       </div>
       <p v-if="error && submitting" class="error-message">

@@ -9,6 +9,7 @@
       :disabled=disabled
       @focus="clearStatus"
       @keypress="clearStatus"
+      :required=required
     />
   </div>
 </template>
@@ -22,6 +23,7 @@
       item: {},
       property: {},
       disabled: {},
+      required: {},
     },
     methods: {
       clearStatus() {
