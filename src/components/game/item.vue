@@ -25,14 +25,14 @@
         />      
       </div>
       <div>
-        <label>Points</label>
-        <input
+        <InputField
+          property="points"
           type="number"
-          :class="{ 'has-error': submitting && invalidPoints }"
-          v-model="item.points"
+          :hasError=hasError
+          :item=item
           :disabled=disabled
-          @focus="clearStatus"
-        />      
+          @action:clear="clearStatus"
+        />
       </div>
       <div>
         <InputField

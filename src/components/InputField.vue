@@ -5,7 +5,8 @@
       :type=type
       :class="{ 'has-error': hasError }"
       id="input"
-      v-model=item[property]
+      v-bind:value=item[property]
+      v-on:input="item[property] = type === 'number' ? parseInt($event.target.value, 10) : $event.target.value"
       :disabled=disabled
       @focus="clearStatus"
       @keypress="clearStatus"
