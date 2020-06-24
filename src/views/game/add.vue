@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Item from '@/components/traveller/item.vue'
+import Item from '@/components/game/item.vue'
 import { request, addItem } from "@/const"
 
 export default {
@@ -21,13 +21,14 @@ export default {
     return {
       item: {
         name: '',
+        email: '',
       },
     }
   },
   methods: {
     async addHandler(item) {
-      await addItem(request + 'travellers', item)
-      this.$router.push('/travellers')
+      await addItem(request + 'games', item)
+      this.$router.push('/games')
     },
   }
 }

@@ -1,13 +1,6 @@
 <template>
   <div id="app" class="small-container">
     <img alt="Vue logo" src="./assets/logo.png">
-    <p>
-      <!-- use router-link component for navigation. -->
-      <!-- specify the link by passing the `to` prop. -->
-      <!-- `<router-link>` will be rendered as an `<a>` tag by default -->
-      <router-link to="/helloworld" tag="button">HelloWorld</router-link> :: 
-      <router-link to="/travellers" tag="button">Travellers</router-link>
-    </p>
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
     <router-view></router-view>
@@ -37,6 +30,12 @@ button {
 }
 
 .small-container {
-  max-width: 680px;
+  max-width: 1920px;
 }
+
+/* div {
+  border: 5px solid #ff0000;
+  margin-right: .75rem;
+  padding: .3rem;
+} */
 </style>

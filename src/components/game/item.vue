@@ -3,26 +3,45 @@
     <hr />
     <form @submit.prevent="handleSubmit">
       <div>
-        <!-- <label for="name">Name</label>
+        <label>Date</label>
         <input
-          id="name"
           ref="first"
-          type="text"
-          :class="{ 'has-error': submitting && invalidName }"
-          v-model="item.name"
+          type="datetime"
+          :class="{ 'has-error': submitting && invalidDate }"
+          v-model="item.date"
           :disabled=disabled
           @focus="clearStatus"
           @keypress="clearStatus"
-        /> -->
-        <InputField
-          property="name"
-          ref="first"
+        />      
+      </div>
+      <div>
+        <label>Traveller.Name</label>
+        <input
           type="text"
+          :class="{ 'has-error': submitting && invalidTraveller }"
+          v-model="item.travellerId"
+          :disabled=disabled
+          @focus="clearStatus"
+        />      
+      </div>
+      <div>
+        <InputField
+          property="points"
+          type="number"
           :hasError=hasError
           :item=item
           :disabled=disabled
           @action:clear="clearStatus"
-          required="required"
+        />
+      </div>
+      <div>
+        <InputField
+          property="promotion"
+          type="checkbox"
+          :hasError=hasError
+          :item=item
+          :disabled=disabled
+          @action:clear="clearStatus"
         />
       </div>
       <p v-if="error && submitting" class="error-message">
@@ -33,7 +52,7 @@
       </p>
       <div>
         <button>Accept</button> ::
-        <router-link to="/travellers" tag="button">Cancel</router-link>
+        <router-link to="/games" tag="button">Cancel</router-link>
       </div>
     </form>
   </div>
@@ -69,7 +88,7 @@
         this.submitting = true
         this.clearStatus()
         
-        if (this.invalidName) {
+        if (this.invalidDate || this.invalidPoints || this.invalidPromotion) {
           this.error = true
           return
         }
@@ -77,21 +96,27 @@
         this.$emit('action:item', this.item)
         this.$refs.first.focus()
 
-        this.submitting = false        
         this.error = false
         this.success = true
+        this.submitting = false        
       },
       clearStatus() {
-        this.error = false
         this.success = false
+        this.error = false
       }
     },
     computed: {
-      invalidName() {
-        return this.item.name === ''
+      invalidDate() {
+        return this.item.date === ''
       },
-      hasError() {
-        return this.submitting && this.invalidName
+      invalidPoints() {
+        return this.item.points === ''
+      },
+      invalidPromotion() {
+        return this.item.promotion === ''
+      },
+      invalidTraveller() {
+        return this.item.travellerId === ''
       },
     },    
   }
